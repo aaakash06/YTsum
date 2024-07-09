@@ -57,7 +57,7 @@ def extract_yt_title(youtube_video_url):
         )
         response = request.execute()
         
-        print(response)
+       
         # Extract and return the title
         title = response['items'][0]['snippet']['title']
 
@@ -76,13 +76,13 @@ def generate_gemini_content(transcript_text,prompt):
     response=model.generate_content(prompt+transcript_text)
     return response.text
 
-st.title("YouTube Transcript to Detailed Notes Converter")
+st.title("YTsum - Get summarized")
 youtube_link = st.text_input("Enter YouTube Video Link:")
 
 if youtube_link:
     video_id = youtube_link.split("=")[1]
-    print(video_id)
-    st.markdown(extract_yt_title(youtube_link))
+    
+    st.title(extract_yt_title(youtube_link))
     st.image(f"http://img.youtube.com/vi/{video_id}/0.jpg", use_column_width=True)
     
 
