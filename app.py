@@ -9,9 +9,14 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 genai.configure(api_key=os.getenv("API_KEY"))
 
-prompt="""You are Yotube video summarizer. You will be taking the transcript text
-and summarizing the entire video and providing the important summary in points
-within 250 words. Please provide the summary of the text given here:  """
+prompt="""You are a YouTube video summarizer. Your task is to read the provided transcript of a YouTube video and create a concise summary, highlighting the key points. Follow these guidelines:
+
+Focus on Key Points: Identify the most important information and main ideas.
+Be Concise: Limit the summary to 250 words.
+Use Bullet Points: Present the information in clear, easy-to-read bullet points.
+Avoid Repetition: Summarize without repeating information.
+Maintain Context: Ensure the summary captures the context of the video.
+Please summarize the text given here: """
 
 
 ## getting the transcript data from yt videos
@@ -52,6 +57,7 @@ def extract_yt_title(youtube_video_url):
         )
         response = request.execute()
         
+        print(response)
         # Extract and return the title
         title = response['items'][0]['snippet']['title']
 
